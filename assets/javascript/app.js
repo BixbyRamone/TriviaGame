@@ -4,21 +4,21 @@ var theQuestions = {
 
 	question1: {
 	questionText: "First Question?",
-	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+	answersObj: ["answer 1-1",  "answer 1-2", "answer 1-3", "answer 1-4"],
 	corAnswer: 4
 },
 
 	question2: {
 	questionText: "Second question?",
-	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+	answersObj: ["answer 2-1",  "answer 2-2", "answer 2-3", "answer 2-4"],
 	corAnswer: 2
 },
 
-// 	question3: {
-// 	questionText: "Third Question?",
-// 	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
-// 	corAnswer: 4
-// },
+	question3: {
+	questionText: "Third Question?",
+	answersObj: ["answer 3-1",  "answer 3-2", "answer 3-3", "answer 3-4"],
+	corAnswer: 4
+},
 
 // 	question4: {
 // 	questionText: "Forth Question?",
@@ -152,12 +152,22 @@ $('input').hide();
 $('.startButton').on("click", function(event) {
 
 		runQuestion();
+		iterator++;
+
 
 	
 	});
 
 $('.nextButton').on("click", function(event){
 	var choice = is_checked();
+	if (iterator == 2) {
+		Question(theQuestions.question2);
+		iterator++;
+	}
+	else if (iterator == 3) {
+		Question(theQuestions.question3);
+		iterator++;
+	}
 
 
 
