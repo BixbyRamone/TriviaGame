@@ -4,87 +4,65 @@ var theQuestions = {
 
 	question1: {
 	questionText: "First Question?",
-	ans1: "answer 1",
-	ans2: "answe 2",
-	ans3: "answer 3",
-	ans4: "answer 4",
+	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
 	corAnswer: 4
 },
 
 	question2: {
 	questionText: "Second question?",
-	ans1: "answer 1",
-	ans2: "answe 2",
-	ans3: "answer 3",
-	ans4: "answer 4",
+	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
 	corAnswer: 2
 },
 
-	question3: {
-	questionText: "Third Question?",
-	ans1: "answer 1",
-	ans2: "answe 2",
-	ans3: "answer 3",
-	ans4: "answer 4",
-	corAnswer: 4
-},
+// 	question3: {
+// 	questionText: "Third Question?",
+// 	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+// 	corAnswer: 4
+// },
 
-	question4: {
-	questionText: "Forth Question?",
-	ans1: "answer 1",
-	ans2: "answe 2",
-	ans3: "answer 3",
-	ans4: "answer 4",
-	corAnswer: 3
-},
+// 	question4: {
+// 	questionText: "Forth Question?",
+// 	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+// 	corAnswer: 3
+// },
 
-	question5: {
-	questionText: "Fifth Question?",
-	ans1: "answer 1",
-	ans2: "answe 2",
-	ans3: "answer 3",
-	ans4: "answer 4",
-	corAnswer: 3
-},
+// 	question5: {
+// 	questionText: "Fifth Question?",
+// 	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+// 	corAnswer: 3
+// },
 
-	question6: {
-	questionText: "Sixth Question?",
-	ans1: "answer 1",
-	ans2: "answe 2",
-	ans3: "answer 3",
-	ans4: "answer 4",
-	corAnswer: 2
-},
+// 	question6: {
+// 	questionText: "Sixth Question?",
+// 	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+// 	corAnswer: 2
+// },
 
-	question7: {
-	questionText: "Seventh Question?",
-	ans1: "answer 1",
-	ans2: "answe 2",
-	ans3: "answer 3",
-	ans4: "answer 4",
-	corAnswer: 1
-},
+// 	question7: {
+// 	questionText: "Seventh Question?",
+// 	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+// 	corAnswer: 1
+// },
 
-	question8: {
-	questionText: "Eigth Question?",
-	ans1: "answer 1",
-	ans2: "answer 2",
-	ans3: "answer 3",
-	ans4: "answer 4",
-	corAnswer: 1
-},
+// 	question8: {
+// 	questionText: "Eigth Question?",
+// 	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+// 	corAnswer: 1
+// }, //use just first two options for testing purposes
 };
 
 var box_checked;
 var hits = 0;
 var misses = 0;
+var iterator = 1;
 
 function Question(object) {
+	var i = 0;
 	$('.question').html(object.questionText);
-	$('.ansA').html(object.ans1);
-	$('.ansB').html(object.ans2);
-	$('.ansC').html(object.ans3);
-	$('.ansD').html(object.ans4);
+	$('.ansA').html(object.answersObj[i]);
+	$('.ansB').html(object.answersObj[i+1]);
+	$('.ansC').html(object.answersObj[i+2]);
+	$('.ansD').html(object.answersObj[i+3]);
 }
 
 function is_checked () {
@@ -173,7 +151,7 @@ $('input').hide();
 
 $('.startButton').on("click", function(event) {
 
-	// setTimeout(runQuestion(),
+		runQuestion();
 
 	
 	});
