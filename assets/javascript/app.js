@@ -1,75 +1,78 @@
 $(document).ready(function() { 
 
-var question1 = {
+var theQuestions = {
+
+	question1: {
 	questionText: "First Question?",
 	ans1: "answer 1",
 	ans2: "answe 2",
 	ans3: "answer 3",
 	ans4: "answer 4",
 	corAnswer: 4
-};
+},
 
-var question2 = {
+	question2: {
 	questionText: "Second question?",
 	ans1: "answer 1",
 	ans2: "answe 2",
 	ans3: "answer 3",
 	ans4: "answer 4",
 	corAnswer: 2
-};
+},
 
-var question3 = {
+	question3: {
 	questionText: "Third Question?",
 	ans1: "answer 1",
 	ans2: "answe 2",
 	ans3: "answer 3",
 	ans4: "answer 4",
 	corAnswer: 4
-};
+},
 
-var question4 = {
+	question4: {
 	questionText: "Forth Question?",
 	ans1: "answer 1",
 	ans2: "answe 2",
 	ans3: "answer 3",
 	ans4: "answer 4",
 	corAnswer: 3
-};
+},
 
-var question5 = {
+	question5: {
 	questionText: "Fifth Question?",
 	ans1: "answer 1",
 	ans2: "answe 2",
 	ans3: "answer 3",
 	ans4: "answer 4",
 	corAnswer: 3
-};
+},
 
-var question6 = {
+	question6: {
 	questionText: "Sixth Question?",
 	ans1: "answer 1",
 	ans2: "answe 2",
 	ans3: "answer 3",
 	ans4: "answer 4",
 	corAnswer: 2
-};
+},
 
-var question7 = {
+	question7: {
 	questionText: "Seventh Question?",
 	ans1: "answer 1",
 	ans2: "answe 2",
 	ans3: "answer 3",
 	ans4: "answer 4",
 	corAnswer: 1
-};
+},
 
-	var question8 = {
+	question8: {
 	questionText: "Eigth Question?",
 	ans1: "answer 1",
 	ans2: "answer 2",
 	ans3: "answer 3",
 	ans4: "answer 4",
 	corAnswer: 1
+},
 };
 
 var box_checked;
@@ -89,8 +92,39 @@ function is_checked () {
 	var b_checked = document.getElementById('#auto_renew_b').checked;
 	var c_checked = document.getElementById('#auto_renew_c').checked;
 	var d_checked = document.getElementById('#auto_renew_d').checked;
+
 	if (a_checked===false && b_checked===false && c_checked===false && d_checked===false) {
 		alert("Select an option");
+	}
+		else if (a_checked == true) {
+			return "a_checked";
+		}
+
+		else if (b_checked == true) {
+			return "b_checked";
+		}
+
+		else if (c_checked == true) {
+			return "c_checked";
+		}
+
+		else if (d_checked == true) {
+			return "d_checked";
+		}
+		
+	}
+
+	function runQuestion() {
+	var userAns;
+	$('button').removeClass("startButton");
+	$('button').addClass("nextButton");
+	$('.nextButton').html("Next");
+
+
+
+	$('input').show();
+
+	Question(theQuestions.question1);
 	}
 
 // 	if (a_checked == true) {
@@ -112,7 +146,7 @@ function is_checked () {
 // console.log(box_checked);
 
 
-} 
+ 
 
 // function ansClick() {
 // 	var a;
@@ -139,21 +173,17 @@ $('input').hide();
 
 $('.startButton').on("click", function(event) {
 
-	var userAns;
-	$('button').removeClass("startButton");
-	$('button').addClass("nextButton");
-	$('.nextButton').html("Next");
+	// setTimeout(runQuestion(),
 
-
-
-	$('input').show();
-
-	Question(question1);
+	
 	});
 
 $('.nextButton').on("click", function(event){
-	is_checked();
-	console.log(box_checked);
+	var choice = is_checked();
+
+
+
+	// setTimeout()
 })
 
 
