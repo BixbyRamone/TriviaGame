@@ -17,7 +17,7 @@ var theQuestions = {
 },
 
 	question3: {
-	questionText: "A recent study by Graduate Student Matt Baron propeses what dastric change in dinosaur taxonomy?",
+	questionText: "A recent study by Graduate Student Matt Baron proposes what drastric change in dinosaur taxonomy?",
 	answersObj: ["Modern birds are not decended from any dinosaur lineage",  "Ceratopsians belong in Sauropoda instead of Ornithiscia", "Modern birds evolved from Ornithiscia instead of from Theropods", "Theropoda is more closely related to Ornithiscians instead of sharing close ancestry with Sauropoda"],
 	corAnswer: 4,
 	exp: "in the late 19th century dinosaurs were divided into Ornithiscia, and Saurischians. The latter contained both Theropod and Saurpod dinosaurs. New research may suggest that the Theropods are more closely related to the Ornithiscians."
@@ -53,7 +53,7 @@ var theQuestions = {
 
 	question8: {
 	questionText: "Which of the following was not a mistake made in the reconstruction of Igunadon?",
-	answersObj: ["I was assumed to be a gigantic species of iguana by 19th century paleontologists",  "The thumbs were mistaken for teeth", "It was thought to be a quadraped", "A carnivores teeth were mistaken to be its teeth"],
+	answersObj: ["It was assumed to be a gigantic species of iguana by 19th century paleontologists",  "The thumbs were mistaken for teeth", "It was thought to be a quadraped", "A carnivores teeth were mistaken to be its teeth"],
 	corAnswer: 1,
 	exp: "Gideon Mantell knew that his discovery was not an iguana, but named it after a superficial resemblence of the teeth."
 },
@@ -67,6 +67,7 @@ var iterator = 1;
 var intervalId;
 var clockRunning = false;
 var nextOn = false;
+var gameOn = true;
 
 var timer = {
 	time: 30,
@@ -89,15 +90,20 @@ var timer = {
 		var currentTime = timer.time;
 
 		$('.timerHTML').html(currentTime);
+		console.log(currentTime);
+
 		if (timer.time < 0) {
+
+			var choice = is_checked();
+
+			ansChecker(choice, theQuestions['question' + (iterator-1)].corAnswer);
+			
 			a_checked = document.getElementById('auto_renew_a').checked = false;
 			b_checked = document.getElementById('auto_renew_b').checked = false;
 			c_checked = document.getElementById('auto_renew_c').checked = false;
 			d_checked = document.getElementById('auto_renew_d').checked = false;
 
 
-			misses++;
-			$('.incorrect').html("Misses: " + misses);
 
 			nextBtnQustChngr();
 			
@@ -105,18 +111,6 @@ var timer = {
 		}
 	},
 
-	// outTime: function() {
-	// 	if (timer.time < 0) {
-	// 		a_checked = document.getElementById('auto_renew_a').checked = false;
-	// 		b_checked = document.getElementById('auto_renew_b').checked = false;
-	// 		c_checked = document.getElementById('auto_renew_c').checked = false;
-	// 		d_checked = document.getElementById('auto_renew_d').checked = false;
-
-	// 		nextBtnQustChngr();
-	// 		misses--;
-	// 		timer.reset();
-	// 	}
-	// }
 };
 
 function Question(object) {
@@ -155,7 +149,7 @@ function is_checked () {
 		
 	}
 
-	function runQuestion() {
+function runQuestion() {
 	var userAns;
 	$('.startButton').hide();
 	$('.nextButton').show();
@@ -167,38 +161,55 @@ function is_checked () {
 	Question(theQuestions.question1);
 	}
 
-	function ansChecker (crctAnsr, userChoice) {
+function ansChecker (crctAnsr, userChoice) {
 		if (crctAnsr == userChoice) {
 			hits++;
 			$('.correct').html("Hits: " + hits);
 		}
 
-		else {
+		else if (crctAnsr != userChoice && gameOn == true) {
 			misses++;
 			$('.incorrect').html("Misses: " + misses);
 		}
 	}
 
-	function nextBtnQustChngr() {
+function nextBtnQustChngr() {
 		Question(theQuestions['question' + iterator]);
+		clockRunning = false;
 		iterator++;
+		gameOn = true;
+		timer.reset();
+		timer.start();
 	}
+
+function gameFinished () {
+	$('input').hide();
+	$('.timerHTML').hide();
+	$('form').hide();
+	$('button').hide();
+	$('.explenation').hide();
+	$('p').hide();
+	$('.question').html("<p>You got " + hits + " of the 8 questions correct.</p><p>You missed " + misses + ".");
+	$('question').append("</p><br><br><img src='../images/thagomizer.jpg'</img>");
+}
+
 
 	$('.nextButton').hide();
 
 
-if (timer.time < 0) {
-			a_checked = document.getElementById('auto_renew_a').checked = false;
-			b_checked = document.getElementById('auto_renew_b').checked = false;
-			c_checked = document.getElementById('auto_renew_c').checked = false;
-			d_checked = document.getElementById('auto_renew_d').checked = false;
+// if (timer.time < 0) {
+// 			a_checked = document.getElementById('auto_renew_a').checked = false;
+// 			b_checked = document.getElementById('auto_renew_b').checked = false;
+// 			c_checked = document.getElementById('auto_renew_c').checked = false;
+// 			d_checked = document.getElementById('auto_renew_d').checked = false;
 
-			nextBtnQustChngr();
-			misses--;
-			timer.reset();
-			}
+// 			nextBtnQustChngr();
+// 			// misses--;
+// 			timer.reset();
+// 			}
 
 $('input').hide();
+$('.explenation').hide();
 
 
 $('.startButton').on("click", function(event) {
@@ -212,36 +223,51 @@ $('.startButton').on("click", function(event) {
 	});
 
 $('.nextButton').on("click", function(event){
-	var choice = is_checked();
-	console.log(choice);
+	
+	if (hits + misses === 8 && gameOn == false) {
+		gameFinished();
+	}
+	if (gameOn == true) {
+		var choice = is_checked();
+		console.log(choice);
 
-	a_checked = document.getElementById('auto_renew_a').checked = false;
-	b_checked = document.getElementById('auto_renew_b').checked = false;
-	c_checked = document.getElementById('auto_renew_c').checked = false;
-	d_checked = document.getElementById('auto_renew_d').checked = false;
+		var rightAns = theQuestions['question' + (iterator-1)].corAnswer;
+
+		ansChecker(choice, rightAns);
 
 
-	var rightAns = theQuestions['question' + (iterator-1)].corAnswer;
-
-	ansChecker(choice, rightAns);
 
 	if (nextOn == false) {
 		$('.explenation').html(theQuestions['question' + (iterator-1)].exp);
+		$('.explenation').show();
 		clearInterval(intervalId);
+		gameOn = false;
 
 	}
 	else {
 
 	nextBtnQustChngr();
 
-	timer.reset();
+
 
 	nextOn = true;
+}
+}
+else if (gameOn == false) {
+	a_checked = document.getElementById('auto_renew_a').checked = false;
+	b_checked = document.getElementById('auto_renew_b').checked = false;
+	c_checked = document.getElementById('auto_renew_c').checked = false;
+	d_checked = document.getElementById('auto_renew_d').checked = false;
+		
+	nextBtnQustChngr();
+	timer.reset();
+	$('.explenation').hide();
+
+
+
 }
 
 })
 
 
 });
-
-  

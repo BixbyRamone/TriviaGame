@@ -23,6 +23,7 @@ text {
 }
 
 .timerHTML {
+	color: #ddc10b;
 	font-size: 24px;
 	text-align: center;
 }
@@ -47,4 +48,15 @@ body {
 p, text {
 		text-align: center;
 
+}
+
+.explenation {
+	font-size: 24px;
+	color: #ddc10b;
+}
+
+footer {
+	background: #ecf2c4;
+	bottom: 10px;
+	position: fixed;
 }
