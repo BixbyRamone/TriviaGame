@@ -93,11 +93,12 @@ var timer = {
 		console.log(currentTime);
 
 		if (timer.time < 0) {
+			clearInterval(intervalId);
 
 			var choice = is_checked();
 
 			ansChecker(choice, theQuestions['question' + (iterator-1)].corAnswer);
-			
+
 			a_checked = document.getElementById('auto_renew_a').checked = false;
 			b_checked = document.getElementById('auto_renew_b').checked = false;
 			c_checked = document.getElementById('auto_renew_c').checked = false;
