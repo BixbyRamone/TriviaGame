@@ -11,36 +11,51 @@
 <link rel="stylesheet" type="text/css" href="assets/css/reset.css">
 <link rel="stylesheet" type="text/css" href="assets/css/style.css">
 
+<link href="https://fonts.googleapis.com/css?family=Bungee+Inline|Merriweather" rel="stylesheet">
+
 <script src="https://code.jquery.com/jquery.js"></script>
 
 <script type="text/javascript" src="assets/javascript/app.js"></script>
 </head>
 <body>
 	<header>Dinosaur Trivia</header>
-
+	<br>
+	<br>
 	<div class="timerHTML">30</div>
-
-	<div class="question"></div>
-
-	<form action="submission.html" method="get" onsubmit="return is_checked()">
-		<input type="radio" class="answerRadA" name="auto_renew" id="auto_renew_a" value="a"></input><text class="ansA"></text>
+	<br>
+	<br>
+	
+	<div class="interact container">
+		<div class="row">
+			<div class="question"></div>
+		</div>
 		<br>
-		<input type="radio" class="answerRadB" name="auto_renew" id="auto_renew_b" value="b"></input><text class="ansB"></text>
 		<br>
-		<input type="radio" class="answerRadC" name="auto_renew" id="auto_renew_c" value="c"></input><text class="ansC"></text>
-		<br>
-		<input type="radio" class="answerRadD" name="auto_renew" id="auto_renew_d" value="d"></input><text class="ansD"></text>
-	</form>
 
-	<button class="startButton">Start Quiz!</button>
-	<button class="nextButton">Next</button>
+		<form action="submission.html" method="get" onsubmit="return is_checked()">
+			<input type="radio" class="answerRadA" name="auto_renew" id="auto_renew_a" value="a"></input><text class="ansA"></text>
+			<br>
+			<br>
+			<input type="radio" class="answerRadB" name="auto_renew" id="auto_renew_b" value="b"></input><text class="ansB"></text>
+			<br>
+			<br>
+			<input type="radio" class="answerRadC" name="auto_renew" id="auto_renew_c" value="c"></input><text class="ansC"></text>
+			<br>
+			<br>
+			<input type="radio" class="answerRadD" name="auto_renew" id="auto_renew_d" value="d"></input><text class="ansD"></text>
+		</form>
+		
+		<div class="buttonHolder">
+			<button class="startButton">Start Quiz!</button>
+			<button class="nextButton">Next</button>
+		</div>
 
-	<div class="explenation">Explain</div>
+		<div class="explenation">Explain</div>
+	
 
-
-	<p class="correct">Hits:</p>
-	<p class="incorrect">Misses:</p>
-
+		<p class="correct">Hits:</p>
+		<p class="incorrect">Misses:</p>
+	</div>
 
 </body>
 </html>
