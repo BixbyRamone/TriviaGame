@@ -21,34 +21,36 @@ var theQuestions = {
 },
 
 	question4: {
-	questionText: "Forth Question?",
-	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+	questionText: "The suborder of Ceratopsia is easily recognized by what prominent feature?",
+	answersObj: ["A large sickle shaped claw on the inner toe",  "Elongated necks, long tails, and generally massive size", "Large bony frills, and in many cases horns", "Boney plates along the back"],
 	corAnswer: 3
 },
 
 	question5: {
-	questionText: "Fifth Question?",
-	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+	questionText: "The spikes on the tail of a Stegosaurus is known as a thagomizer, this name is derived from:",
+	answersObj: ["The Latin term for iron maiden, a 19th century torture device",  "The name for a growth off of a sacral vertebral bone", "A joke in a Farside comic", "The name of the species' founder"],
 	corAnswer: 3
 },
 
 	question6: {
-	questionText: "Sixth Question?",
-	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+	questionText: "Which of these skeletal feature unites all dinosaurs, suggesting their common ancestry?",
+	answersObj: ["A temporal opening, an opening around the eyes, behind the zygomatic arch",  "An open acetabulum (hip socket)", "An elongated tail supported by stiffened tendons", "Large size and scales"],
 	corAnswer: 2
 },
 
 	question7: {
-	questionText: "Seventh Question?",
-	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+	questionText: "What was the first dinosaur to ever be named and described?",
+	answersObj: ["Megalosaurus",  "Ceratosaurus", "Allosaurus", "Igunadon"],
 	corAnswer: 1
 },
 
 	question8: {
-	questionText: "Eigth Question?",
-	answersObj: ["answer 1",  "answer 2", "answer 3", "answer 4"],
+	questionText: "Which of the following was not a mistake made in the reconstruction of Igunadon?",
+	answersObj: ["I was assumed to be a gigantic species of iguana",  "The thumbs were mistaken for teeth", "It was thought to be a quadraped", "A carnivores teeth were mistaken to be its teeth"],
 	corAnswer: 1
-},};
+},
+
+};
 
 var box_checked;
 var hits = 0;
@@ -58,31 +60,54 @@ var intervalId;
 var clockRunning = false;
 
 var timer = {
-	time: 30,
+	time: 10,
 
 	reset: function() {
-		timer.time = 30;
+		timer.time = 10;
 
-		$('.timerHTML').html("30");
+		$('.timerHTML').html("10");
 	},
 
 	start: function() {
 		if (!clockRunning) {
-			timer.time = setInterval(timer.count, 1000);
+			intervalId = setInterval(timer.count, 1000);
 			clockRunning = true;
 		}
 	},
 
 	count: function() {
 		timer.time--;
-		// var currentTime = timer.time;
-		// var currentTimeAdjust = currentTime + 30;
+		var currentTime = timer.time;
 
-		$('.timerHTML').html(timer.time);
-		// currentTimeAdjust--;
-		// console.log(currentTime);
-		// console.log(currentTimeAdjust);
+		$('.timerHTML').html(currentTime);
+		if (timer.time < 0) {
+			a_checked = document.getElementById('auto_renew_a').checked = false;
+			b_checked = document.getElementById('auto_renew_b').checked = false;
+			c_checked = document.getElementById('auto_renew_c').checked = false;
+			d_checked = document.getElementById('auto_renew_d').checked = false;
+
+
+			misses++;
+			$('.incorrect').html("Misses: " + misses);
+
+			nextBtnQustChngr();
+			
+			timer.reset();
+		}
 	},
+
+	// outTime: function() {
+	// 	if (timer.time < 0) {
+	// 		a_checked = document.getElementById('auto_renew_a').checked = false;
+	// 		b_checked = document.getElementById('auto_renew_b').checked = false;
+	// 		c_checked = document.getElementById('auto_renew_c').checked = false;
+	// 		d_checked = document.getElementById('auto_renew_d').checked = false;
+
+	// 		nextBtnQustChngr();
+	// 		misses--;
+	// 		timer.reset();
+	// 	}
+	// }
 };
 
 function Question(object) {
@@ -104,19 +129,19 @@ function is_checked () {
 		alert("Select an option");
 	}
 		else if (a_checked == true) {
-			return "a_checked";
+			return 1;
 		}
 
 		else if (b_checked == true) {
-			return "b_checked";
+			return 2;
 		}
 
 		else if (c_checked == true) {
-			return "c_checked";
+			return 3;
 		}
 
 		else if (d_checked == true) {
-			return "d_checked";
+			return 4;
 		}
 		
 	}
@@ -136,10 +161,12 @@ function is_checked () {
 	function ansChecker (crctAnsr, userChoice) {
 		if (crctAnsr == userChoice) {
 			hits++;
+			$('.correct').html("Hits: " + hits);
 		}
 
 		else {
 			misses++;
+			$('.incorrect').html("Misses: " + misses);
 		}
 	}
 
@@ -151,7 +178,16 @@ function is_checked () {
 	$('.nextButton').hide();
 
 
+if (timer.time < 0) {
+			a_checked = document.getElementById('auto_renew_a').checked = false;
+			b_checked = document.getElementById('auto_renew_b').checked = false;
+			c_checked = document.getElementById('auto_renew_c').checked = false;
+			d_checked = document.getElementById('auto_renew_d').checked = false;
 
+			nextBtnQustChngr();
+			misses--;
+			timer.reset();
+			}
 
 $('input').hide();
 
@@ -168,13 +204,17 @@ $('.startButton').on("click", function(event) {
 
 $('.nextButton').on("click", function(event){
 	var choice = is_checked();
+	console.log(choice);
 
 	a_checked = document.getElementById('auto_renew_a').checked = false;
 	b_checked = document.getElementById('auto_renew_b').checked = false;
 	c_checked = document.getElementById('auto_renew_c').checked = false;
 	d_checked = document.getElementById('auto_renew_d').checked = false;
 
-	ansChecker();
+
+	var rightAns = theQuestions['question' + (iterator-1)].corAnswer;
+
+	ansChecker(choice, rightAns);
 
 	nextBtnQustChngr();
 
