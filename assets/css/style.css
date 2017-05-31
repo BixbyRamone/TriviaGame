@@ -12,10 +12,12 @@ button {
 
 text, div, p {
 	font-family: 'Merriweather', serif;
+	text-align: center;
 }
 
 .question {
 	font-size: 33px;
+	text-align: center;
 }
 
 text {
@@ -40,9 +42,9 @@ body {
 }
 
 .interact {
-	background-color: #ecf2c4;
-	padding-left: 22%;
-	padding-right:22%;
+	background-color: rgba(236, 242, 196, 0.85);
+	/*padding-left: 22%;*/
+	/*padding-right:22%;*/
 }
 
 p, text {
@@ -53,10 +55,11 @@ p, text {
 .explenation {
 	font-size: 24px;
 	color: #ddc10b;
+	text-align: center;
 }
 
 footer {
 	background: #ecf2c4;
-	bottom: 10px;
-	position: fixed;
+	bottom: 0px;
+	position: static;
 }

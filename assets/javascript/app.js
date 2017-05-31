@@ -198,17 +198,6 @@ function gameFinished () {
 	$('.nextButton').hide();
 
 
-// if (timer.time < 0) {
-// 			a_checked = document.getElementById('auto_renew_a').checked = false;
-// 			b_checked = document.getElementById('auto_renew_b').checked = false;
-// 			c_checked = document.getElementById('auto_renew_c').checked = false;
-// 			d_checked = document.getElementById('auto_renew_d').checked = false;
-
-// 			nextBtnQustChngr();
-// 			// misses--;
-// 			timer.reset();
-// 			}
-
 $('input').hide();
 $('.explenation').hide();
 
